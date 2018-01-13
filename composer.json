@@ -1,0 +1,6 @@
+{
+    "require": {
+        "kint-php/kint": "^2.2",
+        "slim/slim": "^3.0"
+    }
+}

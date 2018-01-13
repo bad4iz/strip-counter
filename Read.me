@@ -1,0 +1,5 @@
+docker build -t strip-counter:1 .
+docker run -d --rm --name strip-counter -v $(pwd):/var/www/html/ -v /var/www/html/vendor -p 8080:80 strip-counter:1
+
+
+172.17.0.1:3308

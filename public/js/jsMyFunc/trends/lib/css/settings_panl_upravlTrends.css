@@ -1,0 +1,113 @@
+#div1{
+    width: 85%;/*Ширина слоя*/
+    margin: 0px auto;/*Значение отступов*/
+    padding: 0px;/*Поля вокруг текста*/
+    border: 0px;/*Параметры границы*/
+    background: Seashell;/*Цвет фона*/
+    border-style: double; /*Граница из двух линий*/
+    border-width: thick;
+    border-top-color: green;
+    border-right-color: green;
+    border-bottom-color: green;
+    border-left-color: green;
+    /*text-align: left;*/
+    /*position: relative;*/
+    /*z-index: 0;*/
+}
+label{
+    font-size: 14px;
+}
+.cnteiner{
+    width: 85%;/*Ширина слоя*/
+    margin: 20px auto;/*Значение отступов*/
+    padding: 0px;/*Поля вокруг текста*/
+    border: 0px;/*Параметры границы*/
+    /*background: Seashell;!*Цвет фона*!*/
+    /*border-style: double; !*Граница из двух линий*!*/
+    /*border-width: thick;*/
+    /*border-top-color: green;*/
+    /*border-right-color: green;*/
+    /*border-bottom-color: green;*/
+    /*border-left-color: green;*/
+}
+div.form-group{
+    padding-top: 10px;
+    /*padding-left: 20%;*/
+}
+
+/* Стили для неактивного модального окна */
+#modal_form {
+    width: 500px;
+    height: auto; /* Рaзмеры дoлжны быть фиксирoвaны */
+    border-radius: 5px;
+    border: 3px #000 solid;
+    background: #fff;
+    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+    /*top: 45%;*/ /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+    left: 50%; /* пoлoвинa экрaнa слевa */
+    margin-top: -150px;
+    margin-left: -150px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+    display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+    opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+    z-index: 1000; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+    /*padding: 20px 10px;*/
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal_form #modal_close {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
+}
+/* Пoдлoжкa */
+#overlay {
+    z-index:3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+    position:fixed; /* всегдa перекрывaет весь сaйт */
+    background-color:#000; /* чернaя */
+    opacity:0.8; /* нo немнoгo прoзрaчнa */
+    -moz-opacity:0.8; /* фикс прозрачности для старых браузеров */
+    filter:alpha(opacity=80);
+    width:100%;
+    height:100%; /* рaзмерoм вo весь экрaн */
+    top:0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+    left:0;
+    cursor:pointer;
+    display:none; /* в oбычнoм сoстoянии её нет) */
+}
+
+
+/* Активация модального окна в состоянии :target */
+.modal:target {
+    /*top: 50%;*/
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
+
+.modal header, .modal footer {
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+}
+.modal footer {
+    border:none;
+    border-top: 1px solid #e7e7e7;
+    border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+}
+.modal section, .modal header, .modal footer {
+    padding: 15px;
+    z-index: 200;
+}
+.modal h2 {
+    margin: 0;
+}
+.modal .btn {
+    float: right;
+}

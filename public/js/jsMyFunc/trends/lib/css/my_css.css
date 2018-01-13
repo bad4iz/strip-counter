@@ -1,0 +1,80 @@
+/*Для мнемосхемы mnemoshema_koiltubing*/
+.mydiv{
+   font-family:Arial, Helvetica, sans-serif;
+   //background: url(map.png) no-repeat;
+   //background-color: red;
+   border: 1px solid red;
+   font-size:11px;
+   width: 800px;
+   height: 400px;
+   position: absolute;
+   left: 250px;
+   //background-size:100% 100%;
+   
+} 
+
+html {
+    padding: 0;
+    height: 100%;
+    margin: 0;
+}
+
+.mybody, .conteiner{
+height: 100%;
+width: 100%;
+
+}
+a {text-decoration: none; user-select: none;}
+/*Фон главной страницы (не работает)*/
+
+
+/*Горизонтальное меню кнопка*/
+a.knopka {
+            color: #fff; /* цвет текста */
+            text-decoration: none; /* убирать подчёркивание у ссылок */
+            user-select: none; /* убирать выделение текста */
+            background: rgb(16,73,143); /* фон кнопки */
+            padding: .5em 1.5em; /* отступ от текста */
+            outline: none; /* убирать контур в Mozilla */
+            line-height: 50px;
+        }
+ 
+a.knopka:hover { background: rgb(230,230,230); color: #000;  } /* при наведении курсора мышки */
+a.knopka:active { background: rgb(152,15,0); } /* при нажатии */
+
+/*Красивый текст на главной странице*/
+.mytext{
+    color: rgba(0,0,0,0.6);
+    text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+}
+
+.google.button {
+  padding: 6px 10px;
+  -webkit-border-radius: 2px 2px;
+  border: solid 1px rgb(153, 153, 153);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(255,255,255,1);
+  line-height: 1;
+}
+
+.google.button_my {
+  padding: 6px 10px;
+  -webkit-border-radius: 2px 2px;
+  border: solid 1px rgb(153, 153, 153);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(255,255,255,1);
+  line-height: 1;
+  width: 95%;
+}
+
+

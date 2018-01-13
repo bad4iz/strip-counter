@@ -1,0 +1,324 @@
+body,
+html{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow-y: hidden;
+    background: #303030 !important;
+}
+.contener_skr{
+    position: relative;
+    z-index: 900;
+}
+.contener_skr .content_skr{
+    position: absolute;
+    width: 100%;
+    height: 84.8%;
+    top:6.5%;
+    overflow: auto;
+    background-color: #232323;
+    display: none;
+}
+.contener_skr svg{
+    width: 100%;
+    height: 100%;
+    /*height:calc(100vh);*/
+    vertical-align:bottom;
+    user-select:none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+/***********************************************************************************************************************/
+#svodka_table{
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    color:white;
+    font-family:Tahoma, Helvetica, sans-serif;/*font-size:50px;*/
+    /*font-style: inherit;*/
+    /*color: #00FF80; !*border: 2px solid #656bff;*!*/
+}
+#svodka_table th{
+    background: #daedf4;
+    color:#417bbb;
+}
+#svodka_table td,
+#svodka_table th{
+    border:1px solid #daedf4;
+    padding: 3px;
+}
+#svodka_table td:nth-child(2n){
+    text-align: right;
+    color: #58bdff;
+}
+
+/***********************************************************************************************************************/
+#dialog_resetGL{
+    position: fixed;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    user-select:none;
+    display: none;
+    z-index: 1000;
+}
+#dialog_resetGL .window{
+    position: relative;
+    background:rgba(0,0,0,0.8);
+    color: white;
+    padding: 35px 15px 10px;
+    border-radius: 15px;
+
+}
+#dialog_resetGL caption{
+    color:white;
+}
+#dialog_resetGL table{
+    border-collapse:separate;
+    border-spacing: 5px;
+    margin:0 auto;
+}
+#dialog_resetGL td{
+    width: 100px;
+    min-width: 100px;
+    height: 80px;
+    background: linear-gradient(to bottom right, #007EB3, #004167);
+    vertical-align: middle;
+    text-align: center;
+    font-size: 25px;
+    cursor:pointer;
+    border-radius:15px;
+    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.2);
+}
+#dialog_resetGL td:active{
+    color:gray;
+    background: #004167;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
+}
+#dialog_resetGL caption{
+    text-align: center;
+    font-size: 16px;
+}
+#dialog_resetGL caption input{
+    height: 35px;
+    border-radius:10px;
+    border:none;
+    padding: 0 15px;
+    font-size: 20px;
+    width: 150px;
+    color:black;
+}
+#resetGo{
+    text-align: center;
+    font-size: 16px;
+}
+#close_GL{
+    font-size: 25px;
+    line-height: 22px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top:10px;
+    background: white;
+    color:black;
+    height: 25px;
+    padding: 0 8px 26px;
+    border-radius: 5px;
+}
+.plen{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+/***********************************************************************************************************************/
+.modal_skr{
+    position: absolute;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    user-select:none;
+    display: none;
+    user-select:none;
+    z-index: 1000;
+}
+.win_skr{
+    position: relative;
+    background:rgba(255,0,0,0.8);
+    color: white;
+    padding: 10px;
+    max-width: 280px;
+    max-height: 320px;
+    overflow: auto;
+    text-align: center;
+}
+.btn_skr{
+    background: linear-gradient(to bottom, #007EB3, #004167);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.btn_skr:active{
+    background: linear-gradient(to top, #007EB3, #004167);
+}
+.cont_wind_skr{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+/*********************************************************************************************************************/
+#div1{
+    width: 85%;/*Ширина слоя*/
+    margin: 0px auto;/*Значение отступов*/
+    padding: 0px;/*Поля вокруг текста*/
+    border: 0px;/*Параметры границы*/
+    background: Seashell;/*Цвет фона*/
+    border-style: double; /*Граница из двух линий*/
+    border-width: thick;
+    border-top-color: green;
+    border-right-color: green;
+    border-bottom-color: green;
+    border-left-color: green;
+    /*text-align: left;*/
+    /*position: relative;*/
+    /*z-index: 0;*/
+}
+label{
+    font-size: 14px;
+}
+.cnteiner{
+    width: 85%;/*Ширина слоя*/
+    margin: 20px auto;/*Значение отступов*/
+    padding: 0px;/*Поля вокруг текста*/
+    border: 0px;/*Параметры границы*/
+    /*background: Seashell;!*Цвет фона*!*/
+    /*border-style: double; !*Граница из двух линий*!*/
+    /*border-width: thick;*/
+    /*border-top-color: green;*/
+    /*border-right-color: green;*/
+    /*border-bottom-color: green;*/
+    /*border-left-color: green;*/
+}
+div.form-group{
+    padding-top: 10px;
+    /*padding-left: 20%;*/
+}
+
+/* Стили для неактивного модального окна */
+#modal_form, #modal_form1{
+    width: 500px;
+    height: auto; /* Рaзмеры дoлжны быть фиксирoвaны */
+    border-radius: 5px;
+    border: 3px #000 solid;
+    background: #fff;
+    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+    /*top: 45%;*/ /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+    left:calc(50% - 250px); /* пoлoвинa экрaнa слевa */
+    margin-top: -150px;
+    /*margin-left: -495px; !* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) *!*/
+    display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+    opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+    z-index: 1000; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+    /*padding: 20px 10px;*/
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal_form #modal_close, #modal_form1 #modal_close1 {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
+}
+/* Пoдлoжкa */
+#overlay, #overlay1 {
+    z-index:3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+    position:fixed; /* всегдa перекрывaет весь сaйт */
+    background-color:#000; /* чернaя */
+    opacity:0.8; /* нo немнoгo прoзрaчнa */
+    -moz-opacity:0.8; /* фикс прозрачности для старых браузеров */
+    filter:alpha(opacity=80);
+    width:100%;
+    height:100%; /* рaзмерoм вo весь экрaн */
+    top:0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+    left:0;
+    cursor:pointer;
+    display:none; /* в oбычнoм сoстoянии её нет) */
+}
+
+
+/* Активация модального окна в состоянии :target */
+.modal:target {
+    /*top: 50%;*/
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
+
+.modal header, .modal footer {
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+}
+.modal footer {
+    border:none;
+    border-top: 1px solid #e7e7e7;
+    border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+}
+.modal section, .modal header, .modal footer {
+    padding: 15px;
+    z-index: 200;
+}
+.modal h2 {
+    margin: 0;
+}
+.modal .btn {
+    float: right;
+}
+/**********************************************************************************************************************/
+.updateInfo{
+    cursor: pointer;
+    
+}
+.updateInfo:active{
+    background: rgba(255,255,255,0.3);
+}
+/**********************************************************************************************************************/
+p, span, a, div, td{
+    /**
+     * Для эксплорера
+     */
+    -ms-user-select: none;
+
+    /**
+     * Для мозилы
+     */
+    -moz-user-select: none;
+
+    /**
+     * Для конкверора
+     */
+    -khtml-user-select: none;
+
+    /**
+     * Для Сафари и Хрома
+     */
+    -webkit-user-select: none;
+
+}

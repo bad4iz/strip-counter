@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import 'whatwg-fetch'
+import buttons from './buttons';
+import Table from  './Table';
+import ArrTable from "./arrTable";
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @description посылает пост запрос и вызывает функцию по положительному ответу.
+ * @param {string} url - url адресс на который будет запрос.
+ * @param {string} body - тело запроса
+ * @param {function} calback - функция обратного вызова выполниться с аргументом ответа
+ *
+ * @example &lt;caption>Пример авторизации. Выведет в консоль что прислал сервер&lt;/caption>
+ * httpPost('/home', 'name=Vasya&amp;pass=1234', function(res){
+ *  console.log(res)
+ * });
+ */
+function httpPost(url, body, calback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            calback(this.response);
+        } else {
+            var error = new Error(this.statusText);
+            error.code = this.status;
+            console.log(error);
+        }
+    };
+    xhr.onerror = function () {
+        reject(new Error("Network Error"));
+    };
+    xhr.send(body);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////\
+////////////         Задание на разработку системы учета метража трубной заготовки.       //////////////\
+/////////////////////////////////////////////////////////////////////////////////////////////////////////\
+// document.getElementById('win').removeAttribute('style');
+var stripId = '';
+var i = 0; // счетчик
+
+var app = {
+    arrTable: [],
+    arrButton: [],
+    svg: '',
+    table: {},       // таблица отображения в дом
+    numberPillar: '' // номер колонны
+};
+
+
+/** @namespace */
+document.querySelector('object').addEventListener('load', function () {
+    // var arrTableDom = []; // массив строчек
+    // var arrButton = []; // массив кнопок
+    // var arrTable = []; // массив значений
+    // метраж
+    app.svg = getSvg(); // элемент дом элемента свг
+    // app.footage = app.svg.getElementById('Mr'); // визуализатор счетчика метров
+    var num = 1; //
+    var columns_id = 0; //
+    var id = 1;
+    var value = app.svg.getElementById('Mr');
+
+
+
+    (function fram (){
+        footage( (i++/1000).toFixed(2));
+        requestAnimationFrame(fram);
+    })();
+
+
+    // let tableDom = new Table(app.svg);
+    let arrTable = new ArrTable();
+    app.table = new Table(app.svg);
+    arrTable.addTableDom(app.table);
+    arrTable.add(5, 5);
+    arrTable.add(5, 3);
+
+    ///////////////////////////////////////////////////////
+    /// регистрация функций
+    ////////////////////////////////
+
+
+
+    // // получаем в массиве элементы дом
+    // for (var i = 0; i&lt; rowCount; i++) {
+    //     arrTableDom.push(
+    //         {
+    //             number: svg.getElementById('number_' + i),
+    //             id: svg.getElementById('id_' + i),
+    //             length: svg.getElementById('length_' + i),
+    //             position: svg.getElementById('position_' + i)
+    //         }
+    //     )
+    // }
+
+    //
+    // function setTable(lengthSection, seamPosition) {
+    //     arrTable.push({
+    //         number: num++,
+    //         id: id,
+    //         length: lengthSection,
+    //         position: seamPosition,
+    //         attempts: 1
+    //     });
+    //     if (arrTable.length > rowCount) {
+    //         arrTable.shift();
+    //     }
+    //
+    //     arrTableDom.forEach(function (dom, ind) {
+    //         dom.number.textContent = arrTable[ind].number;
+    //         dom.id.textContent = arrTable[ind].id;
+    //         dom.length.textContent = arrTable[ind].length;
+    //         dom.position.textContent = arrTable[ind].position;
+    //     });
+    // }
+
+    /**
+     * перезаписать шов
+     * @param lengthSection
+     * @param seamPosition
+     */
+    function updateTable(lengthSection, seamPosition) {
+        var length = arrTable.length - 1;
+        var dom = arrTableDom[length];
+        var table = arrTable[length];
+
+        table.position = lengthSection;
+        table.position = seamPosition;
+
+        dom.number.textContent = table.number;
+        dom.id.textContent = table.id + '-' +  table.attempts++;
+        dom.length.textContent = table.position;
+        dom.position.textContent = table.position;
+    }
+
+
+
+    ///////////////////////////////////////////////////////////
+    // регистрация кнопок
+    /////////////////////////////////////////
+
+    // начать новую колонну
+    buttons.add(app.svg.getElementById('to_zero'), initPillar );
+
+    // Обработка кнопки ОК в модальном окне
+    buttons.add(app.svg.getElementById("btnOkSvg"), start);
+
+    // записать шов
+    buttons.add(app.svg.getElementById('to_zero-7-8'), function () {
+            var value = app.getLength();
+            setTable(value.lengthSection, value.seamPosition);
+
+        });
+
+
+    // buttons.add(app.svg.getElementById('to_zero'), initPillar );
+    //
+
+    //
+    // // перезаписать шов
+    // arrButton.push({
+    //     button: svg.getElementById('to_zero-7-8-8'),
+    //     mfunction: function () {
+    //         var value = app.getLength();
+    //         updateTable(value.lengthSection, value.seamPosition);
+    //     }
+    // });
+    //
+    // // закончить колонну
+    // arrButton.push({
+    //     button: svg.getElementById('to_zero-7-8-8-0'),
+    //     mfunction: function () {
+    //         var value = app.getLength();
+    //         finishСolumnTable(value.lengthSection, value.seamPosition);
+    //         clean();
+    //     }
+    // });
+    //
+    // // Обработка кнопки ОК в модальном окне
+    // arrButton.push({
+    //     button: svg.getElementById("btnOkSvg"),
+    //     mfunction: start
+    // });
+    //
+    //
+    // // вешаем обработчики на кнопки
+    // for (var i = arrButton.length - 1; i >= 0; i--) {
+    //     arrButton[i].button.onclick = arrButton[i].mfunction;
+    // }
+
+
+
+
+});
+
+///////////////////////////////////////////////////////\
+///          регистрация глобальных функций           ///\
+///////////////////////////////////////////////////////////\
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * стартуем логику
+ */
+function start() {
+    clean();
+    let numberColumn = app.svg.getElementById('numberColumn');
+    app.numberPillar = numberColumn.textContent;
+    let num = app.svg.getElementById('Num');
+    num.textContent = app.numberPillar;
+    // если все хорошо то прячем модалку
+    // todo послать на сервер номер колонны если удачно то дальше
+    app.svg.getElementById('Keyboord_key').style.display = 'none';
+    numberColumn.textContent = '';
+}
+
+/**
+ * регистрируем фнкцию подсчета длины и позиции шва с начальными параметрами
+ * позиция шва = 0
+ * @returns {Function}
+ */
+function regGetingLength(){
+    var seamPosition = 0; // Позиция шва
+    var counter = app.svg.getElementById('Mr');
+    return (
+        /**
+         * плучаем позицию шва и длину
+         * @returns {{lengthSection: string, seamPosition: number}}
+         */
+        function () {
+            var value = +counter.textContent;
+            var lengthSection = (value - seamPosition).toFixed(1);
+            seamPosition = value.toFixed(1); // позиция шва
+            return {
+                lengthSection: lengthSection, // длина
+                seamPosition: seamPosition // позиция шва
+            }
+        }
+    )
+}
+
+/**
+ * *сбросить на ноль
+ * стереть таблицу
+ * инициализировать функцию подсчета длины
+ */
+function clean() {
+    i = 0;
+    footage(i);
+    app.arrTable = [];
+    // num = 1;
+    // console.log(arrTable);
+    app.table.clear();
+    app.getLength = regGetingLength();
+
+}
+
+
+/**
+ * новая колонна
+ */
+function initPillar() {
+    app.svg.getElementById('Keyboord_key').style.display = 'block';
+}
+
+/**
+ * закончить колонну
+ * @param lengthSection
+ * @param seamPosition
+ */
+function finishСolumnTable(lengthSection, seamPosition) {
+    var length = arrTable.length - 1;
+    var dom = arrTableDom[length];
+    var table = arrTable[length];
+
+    table.position = lengthSection;
+    table.position = seamPosition;
+
+    dom.number.textContent = table.number;
+    dom.id.textContent = table.id + '/' +  table.attempts++;
+    dom.length.textContent = table.position;
+    dom.position.textContent = table.position;
+    clean();
+}
+
+/**
+ * @desc запишит значение в метраж если передадим значение
+ * если не передаем то возвращает текущее значение
+ * @param value
+ * @returns {number}
+ */
+function footage(value) {
+    if(!value){
+        return  +app.svg.getElementById('Mr').textContent;
+    }
+    app.svg.getElementById('Mr').textContent = value;
+}
+
+/**
+ * @desc возвращает элемент дом элемента свг
+ * @returns {Document}
+ */
+function getSvg() {
+    return  document.querySelector('object').getSVGDocument(); // элемент дом элемента свг
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ArrTable.html">ArrTable</a></li><li><a href="Table.html">Table</a></li></ul><h3>Global</h3><ul><li><a href="global.html#clean">clean</a></li><li><a href="global.html#finish%25D0%25A1olumnTable">finishСolumnTable</a></li><li><a href="global.html#footage">footage</a></li><li><a href="global.html#getSvg">getSvg</a></li><li><a href="global.html#httpPost">httpPost</a></li><li><a href="global.html#initPillar">initPillar</a></li><li><a href="global.html#regGetingLength">regGetingLength</a></li><li><a href="global.html#start">start</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 12 2018 13:25:31 GMT+0400 (+04)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
