@@ -16,12 +16,12 @@ class ArrTable{
      * @param lengthSection
      * @param seamPosition - позиция шва
      */
-    add(lengthSection, seamPosition){
+    add(idPillar, lengthSection, seamPosition){
         // todo послать на сервер значение нового шва
 
         let val = {
             number: this._number++,
-            id: 0,
+            id: idPillar + '.' + this._number,
             length: lengthSection,
             position: seamPosition,
             attempts: 1
@@ -52,10 +52,9 @@ class ArrTable{
         let rowOld = this._table.pop();
         // todo посылаем запрос на сервер об обновлении шва
 
-        console.log(+rowOld.length + +seamPosition - +rowOld.position );
         let row = {
             number: this._number,
-            id: 0,
+            id: rowOld.id,
             length: (+rowOld.length + +seamPosition - +rowOld.position).toFixed(1),
             position: seamPosition,
             attempts: ++rowOld.attempts

@@ -40,7 +40,7 @@ function initButtons() {
     // записать шов
     buttons.add(svg.getElementById('to_zero-7-8'), function () {
         let value = app.getLength();
-        app.arrTable.add(value.lengthSection, value.seamPosition);
+        app.arrTable.add( app.numberPillar, value.lengthSection, value.seamPosition );
     });
 
     // перезаписать шов
@@ -52,7 +52,7 @@ function initButtons() {
     // закончить колонну
     buttons.add(svg.getElementById('to_zero-7-8-8-0'),function () {
         let value = app.getLength();
-        app.arrTable.add(value.lengthSection, value.seamPosition);
+        app.arrTable.add( app.numberPillar, value.lengthSection, value.seamPosition);
         app.showTable();
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);

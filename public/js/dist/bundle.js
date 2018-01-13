@@ -4029,7 +4029,7 @@ var ArrTable = function () {
 
             var val = {
                 number: this._number++,
-                id: idPillar + '.' + this._numbe,
+                id: idPillar + '.' + this._number,
                 length: lengthSection,
                 position: seamPosition,
                 attempts: 1
@@ -9756,7 +9756,7 @@ function initButtons() {
     // записать шов
     _buttons2.default.add(svg.getElementById('to_zero-7-8'), function () {
         var value = app.getLength();
-        app.arrTable.add(value.lengthSection, value.seamPosition);
+        app.arrTable.add(app.numberPillar, value.lengthSection, value.seamPosition);
     });
 
     // перезаписать шов
@@ -9768,7 +9768,7 @@ function initButtons() {
     // закончить колонну
     _buttons2.default.add(svg.getElementById('to_zero-7-8-8-0'), function () {
         var value = app.getLength();
-        app.arrTable.add(value.lengthSection, value.seamPosition);
+        app.arrTable.add(app.numberPillar, value.lengthSection, value.seamPosition);
         app.showTable();
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);
