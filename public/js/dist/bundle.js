@@ -4023,13 +4023,13 @@ var ArrTable = function () {
 
 
     _createClass(ArrTable, [{
-        key: "add",
-        value: function add(lengthSection, seamPosition) {
+        key: 'add',
+        value: function add(idPillar, lengthSection, seamPosition) {
             // todo послать на сервер значение нового шва
 
             var val = {
                 number: this._number++,
-                id: 0,
+                id: idPillar + '.' + this._numbe,
                 length: lengthSection,
                 position: seamPosition,
                 attempts: 1
@@ -4046,7 +4046,7 @@ var ArrTable = function () {
          */
 
     }, {
-        key: "_writeRow",
+        key: '_writeRow',
         value: function _writeRow(val) {
             this._tableDom.addRow(val);
         }
@@ -4057,20 +4057,19 @@ var ArrTable = function () {
          */
 
     }, {
-        key: "addTableDom",
+        key: 'addTableDom',
         value: function addTableDom(tableDom) {
             this._tableDom = tableDom;
         }
     }, {
-        key: "update",
+        key: 'update',
         value: function update(seamPosition) {
             var rowOld = this._table.pop();
             // todo посылаем запрос на сервер об обновлении шва
 
-            console.log(+rowOld.length + +seamPosition - +rowOld.position);
             var row = {
                 number: this._number,
-                id: 0,
+                id: rowOld.id,
                 length: (+rowOld.length + +seamPosition - +rowOld.position).toFixed(1),
                 position: seamPosition,
                 attempts: ++rowOld.attempts
@@ -4084,7 +4083,7 @@ var ArrTable = function () {
          */
 
     }, {
-        key: "clear",
+        key: 'clear',
         value: function clear() {
             this._table = [];
         }
@@ -4095,7 +4094,7 @@ var ArrTable = function () {
          */
 
     }, {
-        key: "table",
+        key: 'table',
         get: function get() {
             return this._table;
         }
@@ -9772,7 +9771,7 @@ function initButtons() {
         app.arrTable.add(value.lengthSection, value.seamPosition);
         app.showTable();
         // закрыть итоговую таблицу
-        _buttons2.default.add(document.getElementById('endApp'), app.sendTable(app.numberPillar));
+        document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });
 }
 
@@ -10413,6 +10412,7 @@ var App = function () {
         this.table = new _Table2.default(svg); // таблица отображения в дом
         this.arrTable = new _arrTable2.default();
         this.arrTable.addTableDom(this.table);
+        this.numberPillar = 0;
     }
 
     _createClass(App, [{
@@ -10458,7 +10458,8 @@ var App = function () {
         }
     }, {
         key: 'sendTable',
-        value: function sendTable(idPillar) {
+        value: function sendTable() {
+            var idPillar = this.numberPillar;
             console.log('sendTable');
 
             var table = this.arrTable.table.map(function (item) {

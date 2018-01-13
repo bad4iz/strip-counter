@@ -55,7 +55,7 @@ function initButtons() {
         app.arrTable.add(value.lengthSection, value.seamPosition);
         app.showTable();
         // закрыть итоговую таблицу
-        buttons.add(document.getElementById('endApp'), app.sendTable(app.numberPillar));
+        document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });
 
 }

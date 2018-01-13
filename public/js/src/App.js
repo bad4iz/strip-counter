@@ -10,6 +10,7 @@ class App {
         this.table =  new Table(svg);       // таблица отображения в дом
         this.arrTable = new ArrTable();
         this.arrTable.addTableDom(this.table);
+        this.numberPillar = 0;
     }
 
     showTable(){
@@ -59,10 +60,11 @@ class App {
         div.style.width = '100%';
     }
 
-    sendTable(idPillar){
+    sendTable(){
+        let idPillar = this.numberPillar;
         console.log('sendTable');
 
-        let table =   this.arrTable.table.map(item=>{
+        let table = this.arrTable.table.map( item => {
             return {
                 id: '' + idPillar + '-' + item.number,
                 length: item.length,
