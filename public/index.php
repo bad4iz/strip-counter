@@ -16,7 +16,7 @@ $app = new \Slim\App($config);
 $container = $app->getContainer();
 
 $container['db'] = function ($container) {
-    $capsule =  new NotORM(new PDO("mysql:dbname=strip_counter;host=localhost", 'root', ''));
+    $capsule =  new NotORM(new PDO("mysql:dbname=strip_counter;host=172.17.0.1:3308", 'root', 'pass'));
     return $capsule;
 };
 
@@ -42,7 +42,7 @@ $app->get('/', function ($request, $response, $args) {
 // запись колонны
 $app->post('/pillars/set', function ($request, $response, $args) {
      return $response->withJson($this->db->pillars()->insert($request->getParsedBody()));
-    // 
+    //
      // return $response->withJson($this->db->pillars()->insert($request->getParsedBody()));
 });
 
@@ -50,8 +50,6 @@ $app->post('/pillars/set', function ($request, $response, $args) {
 
 // запись strip по id column
 $app->post('/strips/set', function ($request, $response, $args) {
-  // return $response->withJson($request->getParsedBody());
-
     return $response->withJson($this->db->strips()->insert($request->getParsedBody()));
 });
 
@@ -75,7 +73,7 @@ $app->get('/admin', function ($request, $response, $args) {
 
 // получаем колонны
 $app->post('/pillars', function ($request, $response, $args) {
-    
+
     $answer = [];
     $row = [];
     foreach ($this->db->pillars()->select("id, pillar") as $item) {
@@ -98,6 +96,14 @@ $app->post('/pillar/{id}', function ($request, $response, $args) {
 });
 
 
+
+// записываем таблицу
+$app->post('/table', function ($request, $response, $args) {
+    return $response->withJson($this->db->newstrips()->insert_multi($request->getParsedBody()));
+});
+
+
+
 // выгрузка файла
 $app->post('/create', function ($request, $response, $args) {
     $data = $request->getParsedBody();
@@ -115,19 +121,8 @@ $app->post('/create', function ($request, $response, $args) {
     // return $response->withJson(var_dump(json_decode($data['idPillars'])));
 });
 
-// $app->get('/download', function($req, $res, $args) {
-//     $file = './2.csv';
-//     $response = $res->withHeader('Content-Description', 'File Transfer')
-//                     ->withHeader('Content-Type', 'application/octet-stream')
-//                     ->withHeader('Content-Disposition', 'attachment;filename="'.basename($file).'"')
-//                     ->withHeader('Expires', '0')
-//                     ->withHeader('Cache-Control', 'must-revalidate')
-//                     ->withHeader('Pragma', 'public')
-//                     ->withHeader('Content-Length', filesize($file));
 
-//     readfile('2.csv');
-//     return $response;
-// });
+
 $app->get('/download/{idPillars}', function($request, Slim\Http\Response $response, $args) {
     $file = __DIR__ . '/../downloads/' .$args['idPillars'];;
     $fh = fopen($file, 'rb');

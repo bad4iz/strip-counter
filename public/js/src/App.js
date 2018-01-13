@@ -12,8 +12,7 @@ class App {
         this.arrTable.addTableDom(this.table);
     }
 
-    showTable(callback){
-        let fragment = document.createDocumentFragment();
+    showTable(){
         let div = document.createElement('div');
 
         let button = document.createElement('div');
@@ -35,6 +34,8 @@ class App {
         let td = document.createElement('td');
 
         this.arrTable.table.forEach((item) => {
+
+
             body.innerHTML += `<tr>
                                     <td>${item.number}</td>
                                     <td>${item.id}${item.attempts>1 ? '-' + item.attempts: ''}</td>
@@ -58,8 +59,29 @@ class App {
         div.style.width = '100%';
     }
 
-    sendTable(){
-        fetch('')
+    sendTable(idPillar){
+        console.log('sendTable');
+
+        let table =   this.arrTable.table.map(item=>{
+            return {
+                id: '' + idPillar + '-' + item.number,
+                length: item.length,
+                position: item.position,
+                idPillar: idPillar
+            }
+        });
+
+
+        fetch('table', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(table)
+        }).then(function(response) {
+            location.reload()
+        }).catch( alert );
     }
 
 }

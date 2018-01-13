@@ -53,9 +53,9 @@ function initButtons() {
     buttons.add(svg.getElementById('to_zero-7-8-8-0'),function () {
         let value = app.getLength();
         app.arrTable.add(value.lengthSection, value.seamPosition);
-        app.showTable(clean);
+        app.showTable();
         // закрыть итоговую таблицу
-        buttons.add(document.getElementById('endApp'), ()=> location.reload());
+        buttons.add(document.getElementById('endApp'), app.sendTable(app.numberPillar));
     });
 
 }
@@ -65,7 +65,7 @@ function initButtons() {
 
 
 ////////////////////////////////////////////////////////////
-//
+//   ()=> location.reload()
 ///////////////////////////////////////////////////////////
 
 /**
