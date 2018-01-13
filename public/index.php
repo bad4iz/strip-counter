@@ -71,9 +71,7 @@ function readFileCsv($headers, $body, $idPillars){
     return $flag;
 }
 
-
 // Run app
 $app->run();
 
-//new PDO("mysql:dbname=strip_counter;host=172.17.0.1:3308", 'root', 'pass');
 
