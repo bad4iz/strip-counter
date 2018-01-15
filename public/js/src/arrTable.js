@@ -7,7 +7,7 @@ class ArrTable{
      */
     constructor(tableDom){
         this._table = [];
-        this._number = 1;
+        this._number = 0;
         this._tableDom = {};
     }
 
