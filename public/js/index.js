@@ -51,7 +51,7 @@ class App{
     }
 }
 /** @namespace */
-document.querySelector('object').addEventListener('load', function () {
+document.addEventListener('DOMContentLoaded', function () {
     var i = 0; // счетчик
     var rowCount = 5; // количество строчек
     var arrTableDom = []; // массив строчек
@@ -250,6 +250,7 @@ document.querySelector('object').addEventListener('load', function () {
      * новая колонна
      */
     function initPillar() {
+        console.log(532);
         app.svg.getElementById('Keyboord_key').style.display = 'block';
     }
 

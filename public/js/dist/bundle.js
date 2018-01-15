@@ -4028,7 +4028,7 @@ var ArrTable = function () {
             // todo послать на сервер значение нового шва
 
             var val = {
-                number: this._number++,
+                number: ++this._number,
                 id: idPillar + '.' + this._number,
                 length: lengthSection,
                 position: seamPosition,
@@ -10450,10 +10450,13 @@ var App = function () {
             table.style.margin = '60px auto';
             table.style.width = '70%';
             table.style.backgroundColor = 'azure';
+
             table.classList = 'table table-striped';
 
             div.style.position = 'absolute';
             div.style.top = '0';
+            div.style.overflow = 'auto';
+            div.style.height = '100%';
             div.style.width = '100%';
         }
     }, {

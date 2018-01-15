@@ -20,7 +20,7 @@ class ArrTable{
         // todo послать на сервер значение нового шва
 
         let val = {
-            number: this._number++,
+            number: ++this._number,
             id: idPillar + '.' + this._number,
             length: lengthSection,
             position: seamPosition,

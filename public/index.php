@@ -38,6 +38,9 @@ $app->get('/', function ($request, $response, $args) {
   return $response->write(file_get_contents('index.html' ,  FILE_USE_INCLUDE_PATH));
 });
 
+
+
+
 // записываем таблицу
 $app->post('/table', function ($request, $response, $args) {
     $headers = ['id шва', 'длина м', 'позиция шва м', 'колонна'];
@@ -54,8 +57,9 @@ $app->post('/table', function ($request, $response, $args) {
     }
     readFileCsv($headers, $body, $idPillar);
     return $response->withJson($this->db->newstrips()->insert_multi($request->getParsedBody()));
-
 });
+
+
 
 function readFileCsv($headers, $body, $idPillars){
     $flag = false;
