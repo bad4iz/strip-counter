@@ -9769,7 +9769,10 @@ function initButtons() {
     _buttons2.default.add(svg.getElementById('to_zero-7-8-8-0'), function () {
         var value = app.getLength();
         app.arrTable.add(app.numberPillar, value.lengthSection, value.seamPosition);
-        app.showTable();
+        httpPost('table', JSON.stringify(app.showTable()), function () {
+            return location.reload();
+        });
+
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });
@@ -10474,6 +10477,7 @@ var App = function () {
                 };
             });
 
+            return table;
             // fetch('table', {
             //     headers: {
             //         'Accept': 'application/json',
@@ -10484,9 +10488,6 @@ var App = function () {
             // }).then(function(response) {
             //     location.reload()
             // }).catch( alert );
-            httpPost('table', JSON.stringify(table), function () {
-                return location.reload();
-            });
         }
     }]);
 

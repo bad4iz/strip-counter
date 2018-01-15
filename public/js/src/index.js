@@ -53,7 +53,9 @@ function initButtons() {
     buttons.add(svg.getElementById('to_zero-7-8-8-0'),function () {
         let value = app.getLength();
         app.arrTable.add( app.numberPillar, value.lengthSection, value.seamPosition);
-        app.showTable();
+        httpPost('table', JSON.stringify( app.showTable()), ()=>location.reload() );
+
+
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });

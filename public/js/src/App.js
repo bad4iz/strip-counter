@@ -77,7 +77,7 @@ class App {
             }
         });
 
-
+        return table;
         // fetch('table', {
         //     headers: {
         //         'Accept': 'application/json',
@@ -88,7 +88,6 @@ class App {
         // }).then(function(response) {
         //     location.reload()
         // }).catch( alert );
-        httpPost('table', JSON.stringify(table), ()=>location.reload() )
     }
 
 }
