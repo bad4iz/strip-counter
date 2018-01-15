@@ -53,9 +53,7 @@ function initButtons() {
     buttons.add(svg.getElementById('to_zero-7-8-8-0'),function () {
         let value = app.getLength();
         app.arrTable.add( app.numberPillar, value.lengthSection, value.seamPosition);
-        httpPost('table', JSON.stringify( app.showTable()), ()=>location.reload() );
-
-
+        app.showTable();
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });
@@ -171,7 +169,7 @@ function getSvg() {
 function httpPost(url, body, calback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (this.status == 200) {
             calback(this.response);

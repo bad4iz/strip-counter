@@ -4032,7 +4032,8 @@ var ArrTable = function () {
                 id: idPillar + '.' + this._number,
                 length: lengthSection,
                 position: seamPosition,
-                attempts: 1
+                attempts: 1,
+                time: this.getTime()
             };
 
             this._table.push(val);
@@ -4072,7 +4073,8 @@ var ArrTable = function () {
                 id: rowOld.id,
                 length: (+rowOld.length + +seamPosition - +rowOld.position).toFixed(1),
                 position: seamPosition,
-                attempts: ++rowOld.attempts
+                attempts: ++rowOld.attempts,
+                time: this.getTime()
             };
             this._table.push(row);
             this._tableDom.update(row);
@@ -4093,6 +4095,12 @@ var ArrTable = function () {
          * @returns {Array} - возврат значений
          */
 
+    }, {
+        key: 'getTime',
+        value: function getTime() {
+            var date = new Date();
+            return '' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+        }
     }, {
         key: 'table',
         get: function get() {
@@ -9769,10 +9777,7 @@ function initButtons() {
     _buttons2.default.add(svg.getElementById('to_zero-7-8-8-0'), function () {
         var value = app.getLength();
         app.arrTable.add(app.numberPillar, value.lengthSection, value.seamPosition);
-        httpPost('table', JSON.stringify(app.showTable()), function () {
-            return location.reload();
-        });
-
+        app.showTable();
         // закрыть итоговую таблицу
         document.getElementById('endApp').onclick = app.sendTable.bind(app);
     });
@@ -9879,7 +9884,7 @@ function getSvg() {
 function httpPost(url, body, calback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (this.status == 200) {
             calback(this.response);
@@ -10466,18 +10471,21 @@ var App = function () {
         key: 'sendTable',
         value: function sendTable() {
             var idPillar = this.numberPillar;
-            console.log('sendTable');
 
             var table = this.arrTable.table.map(function (item) {
                 return {
                     id: '' + idPillar + '-' + item.number,
                     length: item.length,
                     position: item.position,
-                    idPillar: idPillar
+                    idPillar: idPillar,
+                    time: item.time
                 };
             });
 
-            return table;
+            this._httpPost('table', JSON.stringify(table), function () {
+                return location.reload();
+            });
+
             // fetch('table', {
             //     headers: {
             //         'Accept': 'application/json',
@@ -10488,6 +10496,26 @@ var App = function () {
             // }).then(function(response) {
             //     location.reload()
             // }).catch( alert );
+        }
+    }, {
+        key: '_httpPost',
+        value: function _httpPost(url, body, calback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    calback(this.response);
+                } else {
+                    var error = new Error(this.statusText);
+                    error.code = this.status;
+                    console.log(error);
+                }
+            };
+            xhr.onerror = function () {
+                reject(new Error("Network Error"));
+            };
+            xhr.send(body);
         }
     }]);
 

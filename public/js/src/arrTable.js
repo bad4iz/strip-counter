@@ -24,7 +24,8 @@ class ArrTable{
             id: idPillar + '.' + this._number,
             length: lengthSection,
             position: seamPosition,
-            attempts: 1
+            attempts: 1,
+            time: this.getTime()
         };
 
         this._table.push(val);
@@ -57,7 +58,8 @@ class ArrTable{
             id: rowOld.id,
             length: (+rowOld.length + +seamPosition - +rowOld.position).toFixed(1),
             position: seamPosition,
-            attempts: ++rowOld.attempts
+            attempts: ++rowOld.attempts,
+            time: this.getTime()
         };
         this._table.push(row);
         this._tableDom.update(row);
@@ -76,6 +78,10 @@ class ArrTable{
      */
     get table () {
         return this._table;
+    }
+    getTime() {
+        let date = new Date();
+        return '' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     }
 }
 export default  ArrTable

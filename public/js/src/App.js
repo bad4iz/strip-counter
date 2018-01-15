@@ -66,18 +66,19 @@ class App {
 
     sendTable(){
         let idPillar = this.numberPillar;
-        console.log('sendTable');
 
         let table = this.arrTable.table.map( item => {
             return {
                 id: '' + idPillar + '-' + item.number,
                 length: item.length,
                 position: item.position,
-                idPillar: idPillar
+                idPillar: idPillar,
+                time: item.time
             }
         });
 
-        return table;
+        this._httpPost('table', JSON.stringify(table), ()=>location.reload() )
+
         // fetch('table', {
         //     headers: {
         //         'Accept': 'application/json',
@@ -89,6 +90,27 @@ class App {
         //     location.reload()
         // }).catch( alert );
     }
+
+    _httpPost(url, body, calback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (this.status == 200) {
+                calback(this.response);
+            } else {
+                var error = new Error(this.statusText);
+                error.code = this.status;
+                console.log(error);
+            }
+        };
+        xhr.onerror = function () {
+            reject(new Error("Network Error"));
+        };
+        xhr.send(body);
+    }
+
+
 
 }
 

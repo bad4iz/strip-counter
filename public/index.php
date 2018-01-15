@@ -43,14 +43,20 @@ $app->get('/', function ($request, $response, $args) {
 
 // записываем таблицу
 $app->post('/table', function ($request, $response, $args) {
-    $headers = ['id шва', 'длина м', 'позиция шва м', 'колонна'];
+    $headers = ['время', 'id шва', 'длина м', 'длина ф', 'позиция шва м', 'позиция шва ф', 'колонна'];
     $body = [];
     $idPillar = 0;
+
+//    return $response->write(var_dump($request->getParsedBody()));
+
     foreach ($request->getParsedBody() as $item) {
         $row = [];
+        $row[] = $item['time'];
         $row[] = $item['id'];
         $row[] = $item['length'];
+        $row[] = round((float)$item['length'] *  3.28084, 1);
         $row[] = $item['position'];
+        $row[] = round((float)$item['position'] * 3.28084, 1);
         $row[] = $item['idPillar'];
         $idPillar = $item['idPillar'];
         $body[] = $row;
