@@ -78,16 +78,17 @@ class App {
         });
 
 
-        fetch('table', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(table)
-        }).then(function(response) {
-            location.reload()
-        }).catch( alert );
+        // fetch('table', {
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     method: "POST",
+        //     body: JSON.stringify(table)
+        // }).then(function(response) {
+        //     location.reload()
+        // }).catch( alert );
+        httpPost('table', JSON.stringify(table), ()=>location.reload() )
     }
 
 }
