@@ -81,7 +81,13 @@ class ArrTable{
     }
     getTime() {
         let date = new Date();
-        return '' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+
+        function t(time) {
+            return ('' + time).length < 2 ? '' + 0 + time : time
+        }
+
+        return '' + t(date.getHours()) + ':' + t(date.getMinutes()) + ':' + t(date.getSeconds()) + ' ' + t(date.getDate()) + '/' + t((date.getMonth() + 1)) + '/' + t(date.getFullYear());
     }
+
 }
 export default  ArrTable

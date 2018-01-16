@@ -43,7 +43,7 @@ $app->get('/', function ($request, $response, $args) {
 
 // записываем таблицу
 $app->post('/table', function ($request, $response, $args) {
-    $headers = ['время', 'id шва', 'длина м', 'длина ф', 'позиция шва м', 'позиция шва ф', 'колонна'];
+    $headers = ['время', 'id шва', 'длина м.', 'длина фут.', 'позиция шва м.', 'позиция шва фут.', 'колонна'];
     $body = [];
     $idPillar = 0;
 
@@ -64,8 +64,6 @@ $app->post('/table', function ($request, $response, $args) {
     readFileCsv($headers, $body, $idPillar);
     return $response->withJson($this->db->newstrips()->insert_multi($request->getParsedBody()));
 });
-
-
 
 function readFileCsv($headers, $body, $idPillars){
     $flag = false;
