@@ -1,248 +1,319 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta charset="utf-8">
-        <!--*****************************************************************************************************************-->
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <!--*****************************************************************************************************************-->
 
-        <!--*****************************************************************************************************************-->
-        <link rel  ="stylesheet"     href="css/styleSKR.css">
-		<link rel  ="stylesheet"     href="css/win-modal.css">
-        <link href="css/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--*****************************************************************************************************************-->
+    <link rel  ="stylesheet"     href="css/styleSKR.css">
+    <link rel  ="stylesheet"     href="css/win-modal.css">
+    <link href="css/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 
-    </head>
-    <body>
-        <div class="contener_skr">
-            <div class="modal_skr">
-                <!--<div class="plen" onclick="close_modal_skr();"></div>-->
-                <div class="win_skr">
+</head>
+<body>
 
-                </div>
-            </div>
+<script type="text/javascript">
+    function preventSelection(element){
+        var preventSelection = false;
+
+        function addHandler(element, event, handler){
+            if (element.attachEvent)
+                element.attachEvent('on' + event, handler);
+            else
+            if (element.addEventListener)
+                element.addEventListener(event, handler, false);
+        }
+        function removeSelection(){
+            if (window.getSelection) { window.getSelection().removeAllRanges(); }
+            else if (document.selection && document.selection.clear)
+                document.selection.clear();
+        }
+        function killCtrlA(event){
+            var event = event || window.event;
+            var sender = event.target || event.srcElement;
+
+            if (sender.tagName.match(/INPUT|TEXTAREA/i))
+                return;
+
+            var key = event.keyCode || event.which;
+            if (event.ctrlKey && key == 'A'.charCodeAt(0))  // 'A'.charCodeAt(0) можно заменить на 65
+            {
+                removeSelection();
+
+                if (event.preventDefault)
+                    event.preventDefault();
+                else
+                    event.returnValue = false;
+            }
+        }
+
+        // не даем выделять текст мышкой
+        addHandler(element, 'mousemove', function(){
+            if(preventSelection)
+                removeSelection();
+        });
+        addHandler(element, 'mousedown', function(event){
+            var event = event || window.event;
+            var sender = event.target || event.srcElement;
+            preventSelection = !sender.tagName.match(/INPUT|TEXTAREA/i);
+        });
+
+        // борем dblclick
+        // если вешать функцию не на событие dblclick, можно избежать
+        // временное выделение текста в некоторых браузерах
+        addHandler(element, 'mouseup', function(){
+            if (preventSelection)
+                removeSelection();
+            preventSelection = false;
+        });
+
+        // борем ctrl+A
+        // скорей всего это и не надо, к тому же есть подозрение
+        // что в случае все же такой необходимости функцию нужно
+        // вешать один раз и на document, а не на элемент
+        addHandler(element, 'keydown', killCtrlA);
+        addHandler(element, 'keyup', killCtrlA);
+    }
+    preventSelection(document);
+</script>
+
+
+<div class="contener_skr">
+    <div class="modal_skr">
+        <!--<div class="plen" onclick="close_modal_skr();"></div>-->
+        <div class="win_skr">
+
         </div>
+    </div>
+</div>
 
-
-        <svg
-                xmlns:dc="http://purl.org/dc/elements/1.1/"
-                xmlns:cc="http://creativecommons.org/ns#"
-                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                xmlns:svg="http://www.w3.org/2000/svg"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                version="1.1"
-                id="svg2"
-                viewBox="0 0 1052.3622 744.09448"
-                inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-                sodipodi:docname="inter3.svg">
-            <sodipodi:namedview
-                    pagecolor="#ffffff"
-                    bordercolor="#666666"
-                    borderopacity="1"
-                    objecttolerance="10"
-                    gridtolerance="10"
-                    guidetolerance="10"
-                    inkscape:pageopacity="0"
-                    inkscape:pageshadow="2"
-                    inkscape:window-width="1858"
-                    inkscape:window-height="1057"
-                    id="namedview125"
-                    showgrid="false"
-                    inkscape:zoom="1.2685914"
-                    inkscape:cx="410.26223"
-                    inkscape:cy="364.0192"
-                    inkscape:window-x="1974"
-                    inkscape:window-y="-8"
-                    inkscape:window-maximized="1"
-                    inkscape:current-layer="g3918" />
-            <defs
-                    id="defs4" />
-            <metadata
-                    id="metadata7">
-                <rdf:RDF>
-                    <cc:Work
-                            rdf:about="">
-                        <dc:format>image/svg+xml</dc:format>
-                        <dc:type
-                                rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                        <dc:title></dc:title>
-                    </cc:Work>
-                </rdf:RDF>
-            </metadata>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        version="1.1"
+        id="svg2"
+        viewBox="0 0 1054.6752 657.84716"
+        inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+        sodipodi:docname="inter3.svg">
+    <sodipodi:namedview
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1"
+            objecttolerance="10"
+            gridtolerance="10"
+            guidetolerance="10"
+            inkscape:pageopacity="0"
+            inkscape:pageshadow="2"
+            inkscape:window-width="1858"
+            inkscape:window-height="1057"
+            id="namedview125"
+            showgrid="false"
+            inkscape:zoom="1.2685914"
+            inkscape:cx="435.90444"
+            inkscape:cy="226.99901"
+            inkscape:window-x="1974"
+            inkscape:window-y="-8"
+            inkscape:window-maximized="1"
+            inkscape:current-layer="g3918"
+            fit-margin-top="0"
+            fit-margin-left="0"
+            fit-margin-right="0"
+            fit-margin-bottom="0" />
+    <defs
+            id="defs4" />
+    <metadata
+            id="metadata7">
+        <rdf:RDF>
+            <cc:Work
+                    rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+            id="layer1"
+            transform="matrix(0.87107463,0,0,0.98822399,173.93015,146.49185)"
+            style="display:inline">
+        <g
+                id="layer1-6"
+                transform="matrix(3.5433068,0,0,3.5433071,-121.96424,-313.57143)"
+                style="display:inline">
             <g
-                    id="layer1"
-                    transform="matrix(0.87107463,0,0,0.98822399,174.93381,188.96453)"
+                    id="g3918"
+                    transform="matrix(0.26458333,0,0,0.26458333,-21.887964,37.525642)"
                     style="display:inline">
+                <rect
+                        ry="10.351703"
+                        y="34.683872"
+                        x="-0.0063929972"
+                        height="709.75159"
+                        width="1291.1794"
+                        id="rect536"
+                        style="opacity:1;fill:#000000;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.31375;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                 <g
-                        id="layer1-6"
-                        transform="matrix(3.5433068,0,0,3.5433071,-121.96424,-313.57143)"
-                        style="display:inline">
+                        style="display:inline"
+                        transform="translate(-0.58896182,584.47585)"
+                        id="layer1-1">
                     <g
-                            id="g3918"
-                            transform="matrix(0.26458333,0,0,0.26458333,-21.887964,37.525642)"
-                            style="display:inline">
+                            onclick=""
+                            transform="matrix(0.07725587,0,0,0.06475654,-913.16043,-819.59735)"
+                            id="to_zero"
+                            style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
                         <rect
-                                ry="11.731174"
-                                y="-4.3333068"
-                                x="-1.110223e-016"
-                                height="804.33331"
-                                width="1291.1666"
-                                id="rect536"
-                                style="opacity:1;fill:#000000;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.33399999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                        <g
-                                style="display:inline"
-                                transform="translate(-0.58896182,584.47585)"
-                                id="layer1-1">
-                            <g
-                                    onclick=""
-                                    transform="matrix(0.07725587,0,0,0.07725587,-913.16043,-953.30487)"
-                                    id="to_zero"
-                                    style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
-                                <rect
-                                        style="fill:#ffffff"
-                                        class="fil8"
-                                        x="13556.373"
-                                        y="12834.109"
-                                        width="4983.7344"
-                                        height="1701.7859"
-                                        rx="0"
-                                        ry="151.84843"
-                                        id="rect4149" />
-                                <text
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
-                                        x="14824.486"
-                                        y="13984.106"
-                                        class="fil0 fnt2"
-                                        id="text4151">&gt;&gt;0&lt;&lt;</text>
-                            </g>
-                            <g
-                                    transform="matrix(0.06862869,0,0,0.06862869,-774.70937,-1434.4452)"
-                                    id="to_zero-7-8"
-                                    style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
-                                <rect
-                                        style="fill:#ffffff"
-                                        class="fil8"
-                                        x="13556.373"
-                                        y="12866.107"
-                                        width="4983.7344"
-                                        height="1701.7859"
-                                        rx="0"
-                                        ry="151.84843"
-                                        id="rect4149-0-8" />
-                                <text
-                                        style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
-                                        x="14643.247"
-                                        y="14013"
-                                        class="fil0 fnt2"
-                                        id="text4151-8-1" />
-                                <text
-                                        id="text49-5"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
-                                        x="13921.324"
-                                        y="13597.208"
-                                        class="fil0 fnt2">Записать</text>
-                                <text
-                                        id="text47-0"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
-                                        x="16359.694"
-                                        y="14348.07"
-                                        class="fil0 fnt2">шов</text>
-                            </g>
-                            <g
-                                    transform="matrix(0.06862869,0,0,0.06862869,-143.57006,-1432.4249)"
-                                    id="to_zero-7-8-8"
-                                    style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
-                                <rect
-                                        style="fill:#ffffff"
-                                        class="fil8"
-                                        x="13556.373"
-                                        y="12836.669"
-                                        width="4983.7344"
-                                        height="1701.7859"
-                                        rx="0"
-                                        ry="151.84843"
-                                        id="rect4149-0-8-2" />
-                                <text
-                                        style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
-                                        x="14643.247"
-                                        y="14013"
-                                        class="fil0 fnt2"
-                                        id="text4151-8-1-0" />
-                                <text
-                                        id="text49-5-9"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:698.49475098px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000;stroke-width:0.82499051"
-                                        x="13591.579"
-                                        y="13583.939"
-                                        class="fil0 fnt2">Перезаписать</text>
-                                <text
-                                        id="text47-0-0"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
-                                        x="16690.217"
-                                        y="14348.07"
-                                        class="fil0 fnt2">шов</text>
-                            </g>
-                            <g
-                                    transform="matrix(0.06862869,0,0,0.06862869,-143.57006,-837.43788)"
-                                    id="to_zero-7-8-8-0"
-                                    style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
-                                <rect
-                                        style="fill:#ffffff"
-                                        class="fil8"
-                                        x="13556.373"
-                                        y="12866.107"
-                                        width="4983.7344"
-                                        height="1701.7859"
-                                        rx="0"
-                                        ry="151.84843"
-                                        id="rect4149-0-8-2-9" />
-                                <text
-                                        style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
-                                        x="14643.247"
-                                        y="14013"
-                                        class="fil0 fnt2"
-                                        id="text4151-8-1-0-5" />
-                                <text
-                                        id="text49-5-9-5"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:746.74914551px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000;stroke-width:0.8819837"
-                                        x="13587.975"
-                                        y="13574.421"
-                                        class="fil0 fnt2">Закончить</text>
-                                <text
-                                        id="text47-0-0-5"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
-                                        x="14952.02"
-                                        y="14348.07"
-                                        class="fil0 fnt2">колонну</text>
-                            </g>
-                            <rect
-                                    y="-262.88821"
-                                    x="18.072676"
-                                    height="3.3003206"
-                                    width="863.89453"
-                                    id="rect155"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50761461;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    y="-213.42955"
-                                    x="19.165192"
-                                    height="3.1267505"
-                                    width="1230.2703"
-                                    id="rect155-2"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.58962035;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    y="-165.76674"
-                                    x="18.069262"
-                                    height="3.2162397"
-                                    width="863.32288"
-                                    id="rect155-2-3"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50094086;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    y="-118.89888"
-                                    x="17.779713"
-                                    height="3.3719051"
-                                    width="863.68817"
-                                    id="rect155-2-8"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.5130288;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <text
+                                style="fill:#ffffff"
+                                class="fil8"
+                                x="13556.373"
+                                y="12834.109"
+                                width="4983.7344"
+                                height="1701.7859"
+                                rx="0"
+                                ry="151.84843"
+                                id="rect4149" />
+                        <text
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
+                                x="14824.486"
+                                y="13984.106"
+                                class="fil0 fnt2"
+                                id="text4151">&gt;&gt;0&lt;&lt;</text>
+                    </g>
+                    <g
+                            transform="matrix(0.06862869,0,0,0.06862869,-774.70937,-1393.4281)"
+                            id="to_zero-7-8"
+                            style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
+                        <rect
+                                style="fill:#ffffff"
+                                class="fil8"
+                                x="13556.373"
+                                y="12866.107"
+                                width="4983.7344"
+                                height="1701.7859"
+                                rx="0"
+                                ry="151.84843"
+                                id="rect4149-0-8" />
+                        <text
+                                style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
+                                x="14643.247"
+                                y="14013"
+                                class="fil0 fnt2"
+                                id="text4151-8-1" />
+                        <text
+                                id="text49-5"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
+                                x="13921.324"
+                                y="13597.208"
+                                class="fil0 fnt2">Записать</text>
+                        <text
+                                id="text47-0"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
+                                x="16359.694"
+                                y="14348.07"
+                                class="fil0 fnt2">шов</text>
+                    </g>
+                    <g
+                            transform="matrix(0.06862869,0,0,0.06862869,-143.57006,-1391.4077)"
+                            id="to_zero-7-8-8"
+                            style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
+                        <rect
+                                style="fill:#ffffff"
+                                class="fil8"
+                                x="13556.373"
+                                y="12836.669"
+                                width="4983.7344"
+                                height="1701.7859"
+                                rx="0"
+                                ry="151.84843"
+                                id="rect4149-0-8-2" />
+                        <text
+                                style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
+                                x="14643.247"
+                                y="14013"
+                                class="fil0 fnt2"
+                                id="text4151-8-1-0" />
+                        <text
+                                id="text49-5-9"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:698.49475098px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000;stroke-width:0.82499051"
+                                x="13591.579"
+                                y="13583.939"
+                                class="fil0 fnt2">Перезаписать</text>
+                        <text
+                                id="text47-0-0"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
+                                x="16690.217"
+                                y="14348.07"
+                                class="fil0 fnt2">шов</text>
+                    </g>
+                    <g
+                            transform="matrix(0.06862869,0,0,0.06862869,-143.57006,-874.78372)"
+                            id="to_zero-7-8-8-0"
+                            style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new">
+                        <rect
+                                style="fill:#ffffff"
+                                class="fil8"
+                                x="13556.373"
+                                y="12866.107"
+                                width="4983.7344"
+                                height="1701.7859"
+                                rx="0"
+                                ry="151.84843"
+                                id="rect4149-0-8-2-9" />
+                        <text
+                                style="font-weight:normal;font-size:846.66998291px;font-family:Arial;fill:#ffffff"
+                                x="14643.247"
+                                y="14013"
+                                class="fil0 fnt2"
+                                id="text4151-8-1-0-5" />
+                        <text
+                                id="text49-5-9-5"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:746.74914551px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000;stroke-width:0.8819837"
+                                x="13587.975"
+                                y="13574.421"
+                                class="fil0 fnt2">Закончить</text>
+                        <text
+                                id="text47-0-0-5"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:846.66998291px;line-height:0%;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000"
+                                x="14952.02"
+                                y="14348.07"
+                                class="fil0 fnt2">колонну</text>
+                    </g>
+                    <rect
+                            y="-262.88821"
+                            x="18.072676"
+                            height="3.3003206"
+                            width="863.89453"
+                            id="rect155"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50761461;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            y="-213.42955"
+                            x="19.165192"
+                            height="3.1267505"
+                            width="1230.2703"
+                            id="rect155-2"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.58962035;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            y="-165.76674"
+                            x="18.069262"
+                            height="3.2162397"
+                            width="863.32288"
+                            id="rect155-2-3"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50094086;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            y="-118.89888"
+                            x="17.779713"
+                            height="3.3719051"
+                            width="863.68817"
+                            id="rect155-2-8"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.5130288;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <text
              transform="scale(0.88382016,1.1314519)"
              id="text214"
              y="-270.94495"
@@ -268,23 +339,23 @@
                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.74561894px"
                y="-262.45242"
                x="708.28241">начала, м</tspan></text>
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-260.58725"
-                                    x="-882.0097"
-                                    height="250.88548"
-                                    width="1.7024219"
-                                    id="rect155-2-8-2-9"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19647035;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-213.66354"
-                                    x="-1249.2463"
-                                    height="144.46072"
-                                    width="1.7479304"
-                                    id="rect155-2-8-2-9-0"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.15106456;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <text
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-260.58725"
+                            x="-882.0097"
+                            height="250.88548"
+                            width="1.7024219"
+                            id="rect155-2-8-2-9"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19647035;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-213.66354"
+                            x="-1249.2463"
+                            height="144.46072"
+                            width="1.7479304"
+                            id="rect155-2-8-2-9-0"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.15106456;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <text
              id="text214-3-1-2"
              y="-235.02322"
              x="921.49615"
@@ -298,223 +369,223 @@
                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.74561894px"
                y="-197.74228"
                x="921.49615" /></text>
-                            <text
-                                    onclick=""
-                                    id="Mr"
-                                    style="font-weight:normal;font-size:74.87985992px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.08844042;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="916.89154"
-                                    y="-110.76561"
-                                    class="fil0 fnt2">
-                                <tspan
-                                        id="tspan406"
-                                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:0.08844042">00000.00</tspan>
-                            </text>
-                            <text
-                                    id="number_0"
-                                    style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="54.154278"
-                                    y="-220.16711"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#number_1">000</text>
-                            <text
-                                    id="length_0"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="488.86273"
-                                    y="-221.46846"
-                                    class="fil0 fnt2">0000.0</text>
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-259.10599"
-                                    x="-19.785728"
-                                    height="245.16547"
-                                    width="1.7022692"
-                                    id="rect155-2-8-2-9-4-4"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19420904;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-258.43289"
-                                    x="-461.34677"
-                                    height="247.83113"
-                                    width="1.7012733"
-                                    id="rect155-2-8-2-9-4-40"
-                                    style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19520487;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <text
+                    <text
+                            onclick=""
+                            id="Mr"
+                            style="font-weight:normal;font-size:74.87985992px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.08844042;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="916.89154"
+                            y="-110.76561"
+                            class="fil0 fnt2">
+                        <tspan
+                                id="tspan406"
+                                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:0.08844042">00000.00</tspan>
+                    </text>
+                    <text
+                            id="number_0"
+                            style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="54.154278"
+                            y="-220.16711"
+                            class="fil0 fnt2"
+                            inkscape:label="#number_1">000</text>
+                    <text
+                            id="length_0"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="488.86273"
+                            y="-221.46846"
+                            class="fil0 fnt2">0000.0</text>
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-259.10599"
+                            x="-19.785728"
+                            height="245.16547"
+                            width="1.7022692"
+                            id="rect155-2-8-2-9-4-4"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19420904;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-258.43289"
+                            x="-461.34677"
+                            height="247.83113"
+                            width="1.7012733"
+                            id="rect155-2-8-2-9-4-40"
+                            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19520487;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <text
              id="text214-3-7"
-             y="-371.61005"
+             y="-352.18127"
              x="314.33252"
              style="font-style:normal;font-weight:normal;font-size:29.82475853px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;display:inline;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.74561894px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
              xml:space="preserve"><tspan
                id="tspan389-8"
                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.74561894px"
-               y="-371.61005"
+               y="-352.18127"
                x="314.33252">Номер  колонны№</tspan></text>
           <text
              id="Num"
-             y="-370.54358"
+             y="-351.11481"
              x="652.45807"
              style="font-style:normal;font-weight:normal;font-size:29.82475853px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;display:inline;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.74561894px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
              xml:space="preserve"><tspan
                id="tspan389-8-1"
                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.74561894px"
-               y="-370.54358"
+               y="-351.11481"
                x="652.45807">XXXXXXX</tspan></text>
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-260.83493"
-                                    x="-168.25737"
-                                    height="247.83113"
-                                    width="1.7012733"
-                                    id="rect155-2-8-2-9-4-40-7"
-                                    style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19520487;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    y="-70.374893"
-                                    x="17.847342"
-                                    height="3.127321"
-                                    width="1231.0436"
-                                    id="rect155-2-3-5"
-                                    style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.58985943;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <rect
-                                    y="-14.38956"
-                                    x="17.802881"
-                                    height="3.2162397"
-                                    width="863.32288"
-                                    id="rect155-2-3-3"
-                                    style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50094086;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <text
-                                    id="number_1"
-                                    style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="50.565002"
-                                    y="-172.51559"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#number_2">000</text>
-                            <text
-                                    id="number_2"
-                                    style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="50.565002"
-                                    y="-126.42036"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#number_3">000</text>
-                            <text
-                                    id="number_3"
-                                    style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="53.993572"
-                                    y="-77.658455"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#number_4">000</text>
-                            <text
-                                    id="number_4"
-                                    style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="52.08881"
-                                    y="-25.087025"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#number_5">000</text>
-                            <text
-                                    id="id_0"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="172.80832"
-                                    y="-222.0394"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#id_1">00000.00-00</text>
-                            <text
-                                    id="id_4"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="172.80832"
-                                    y="-27.372736"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#id_5">00000.00-00</text>
-                            <text
-                                    id="id_3"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="172.80832"
-                                    y="-76.896545"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#id_4">00000.00-00</text>
-                            <text
-                                    id="id_2"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="172.80832"
-                                    y="-125.27749"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#id_3">00000.00-00</text>
-                            <text
-                                    id="id_1"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="172.80832"
-                                    y="-170.61084"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#id_2">00000.00-00</text>
-                            <text
-                                    id="length_1"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="488.86273"
-                                    y="-171.94466"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#length_2">0000.0</text>
-                            <text
-                                    id="length_2"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="488.86273"
-                                    y="-125.08752"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#length_3">0000.0</text>
-                            <text
-                                    id="length_3"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="488.86273"
-                                    y="-76.706566"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#length_4">0000.0</text>
-                            <text
-                                    id="length_4"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="488.86273"
-                                    y="-24.135132"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#length_5">0000.0</text>
-                            <rect
-                                    transform="scale(-1,1)"
-                                    y="-263.25449"
-                                    x="-663.25067"
-                                    height="247.839"
-                                    width="1.7035536"
-                                    id="rect155-2-8-2-9-8"
-                                    style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19533873;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                            <text
-                                    id="position_0"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="691.63745"
-                                    y="-220.70656"
-                                    class="fil0 fnt2"
-                                    inkscape:label="position_0">0000.0</text>
-                            <text
-                                    id="position_1"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="691.25653"
-                                    y="-171.56371"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#position_2">0000.0</text>
-                            <text
-                                    id="position_2"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="690.49463"
-                                    y="-123.5637"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#position_3">0000.0</text>
-                            <text
-                                    id="position_3"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="693.16125"
-                                    y="-75.944656"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#position_4">0000.0</text>
-                            <text
-                                    id="position_4"
-                                    style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                    x="691.63745"
-                                    y="-22.611319"
-                                    class="fil0 fnt2"
-                                    inkscape:label="#position_5">0000.0</text>
-                            <text
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-260.83493"
+                            x="-168.25737"
+                            height="247.83113"
+                            width="1.7012733"
+                            id="rect155-2-8-2-9-4-40-7"
+                            style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19520487;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            y="-70.374893"
+                            x="17.847342"
+                            height="3.127321"
+                            width="1231.0436"
+                            id="rect155-2-3-5"
+                            style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.58985943;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <rect
+                            y="-14.38956"
+                            x="17.802881"
+                            height="3.2162397"
+                            width="863.32288"
+                            id="rect155-2-3-3"
+                            style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.50094086;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <text
+                            id="number_1"
+                            style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="50.565002"
+                            y="-172.51559"
+                            class="fil0 fnt2"
+                            inkscape:label="#number_2">000</text>
+                    <text
+                            id="number_2"
+                            style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="50.565002"
+                            y="-126.42036"
+                            class="fil0 fnt2"
+                            inkscape:label="#number_3">000</text>
+                    <text
+                            id="number_3"
+                            style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="53.993572"
+                            y="-77.658455"
+                            class="fil0 fnt2"
+                            inkscape:label="#number_4">000</text>
+                    <text
+                            id="number_4"
+                            style="font-weight:normal;font-size:47.67808151px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="52.08881"
+                            y="-25.087025"
+                            class="fil0 fnt2"
+                            inkscape:label="#number_5">000</text>
+                    <text
+                            id="id_0"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="172.80832"
+                            y="-222.0394"
+                            class="fil0 fnt2"
+                            inkscape:label="#id_1">00000.00-00</text>
+                    <text
+                            id="id_4"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="172.80832"
+                            y="-27.372736"
+                            class="fil0 fnt2"
+                            inkscape:label="#id_5">00000.00-00</text>
+                    <text
+                            id="id_3"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="172.80832"
+                            y="-76.896545"
+                            class="fil0 fnt2"
+                            inkscape:label="#id_4">00000.00-00</text>
+                    <text
+                            id="id_2"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="172.80832"
+                            y="-125.27749"
+                            class="fil0 fnt2"
+                            inkscape:label="#id_3">00000.00-00</text>
+                    <text
+                            id="id_1"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="172.80832"
+                            y="-170.61084"
+                            class="fil0 fnt2"
+                            inkscape:label="#id_2">00000.00-00</text>
+                    <text
+                            id="length_1"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="488.86273"
+                            y="-171.94466"
+                            class="fil0 fnt2"
+                            inkscape:label="#length_2">0000.0</text>
+                    <text
+                            id="length_2"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="488.86273"
+                            y="-125.08752"
+                            class="fil0 fnt2"
+                            inkscape:label="#length_3">0000.0</text>
+                    <text
+                            id="length_3"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="488.86273"
+                            y="-76.706566"
+                            class="fil0 fnt2"
+                            inkscape:label="#length_4">0000.0</text>
+                    <text
+                            id="length_4"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="488.86273"
+                            y="-24.135132"
+                            class="fil0 fnt2"
+                            inkscape:label="#length_5">0000.0</text>
+                    <rect
+                            transform="scale(-1,1)"
+                            y="-263.25449"
+                            x="-663.25067"
+                            height="247.839"
+                            width="1.7035536"
+                            id="rect155-2-8-2-9-8"
+                            style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#4c6e6a;stroke-width:0.19533873;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                    <text
+                            id="position_0"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="691.63745"
+                            y="-220.70656"
+                            class="fil0 fnt2"
+                            inkscape:label="position_0">0000.0</text>
+                    <text
+                            id="position_1"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="691.25653"
+                            y="-171.56371"
+                            class="fil0 fnt2"
+                            inkscape:label="#position_2">0000.0</text>
+                    <text
+                            id="position_2"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="690.49463"
+                            y="-123.5637"
+                            class="fil0 fnt2"
+                            inkscape:label="#position_3">0000.0</text>
+                    <text
+                            id="position_3"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="693.16125"
+                            y="-75.944656"
+                            class="fil0 fnt2"
+                            inkscape:label="#position_4">0000.0</text>
+                    <text
+                            id="position_4"
+                            style="font-weight:normal;font-size:47.67808914px;line-height:0%;font-family:Arial;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.05631247;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                            x="691.63745"
+                            y="-22.611319"
+                            class="fil0 fnt2"
+                            inkscape:label="#position_5">0000.0</text>
+                    <text
              transform="scale(0.88382017,1.1314519)"
              id="text214-7"
              y="-271.32458"
@@ -551,417 +622,417 @@
                style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.74561894px"
                y="-246.09337"
                x="553.88074"> секции, м</tspan></text>
+                </g>
+                <g
+                        style="display:none"
+                        id="Keyboord_key"
+                        inkscape:label="KEY">
+                    <g
+                            transform="matrix(8.5043073,0,0,8.5043073,-119.17464,-11.456808)"
+                            style="display:inline"
+                            id="Keyboord_keyd"
+                            inkscape:label="Keyboord_key">
+                        <rect
+                                onmouseup=""
+                                onmousedown=""
+                                onclick=""
+                                style="clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.02717622;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                class="fil8"
+                                x="55.728107"
+                                y="4.3286138"
+                                width="72.361061"
+                                height="86.563232"
+                                rx="0"
+                                ry="0"
+                                id="rect4149-1-7" />
+                        <g
+                                transform="translate(-0.75941074,-0.29850669)"
+                                id="g5837">
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-50"
+                                    transform="matrix(0.00649068,0,0,0.00649068,-31.272392,-53.72782)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'1';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="3532.04"
+                                        y="12866.107"
+                                        x="13534.03"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.99867338"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="14221.635"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">1</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-03-0"
+                                    transform="matrix(0.005741,0,0,0.00488508,37.292623,-46.78536)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML = document.getElementById(&quot;numberColumn&quot;).innerHTML.slice(0,-1);"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-67-6"
+                                        ry="0"
+                                        rx="0"
+                                        height="2854.3347"
+                                        width="2456.2429"
+                                        y="12818.235"
+                                        x="13466.982"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.90919751"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-93-1"
+                                        class="fil0 fnt2"
+                                        y="13563.133"
+                                        x="15801.454"
+                                        style="font-weight:normal;font-size:3480.10668945px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:4.11034632"
+                                        transform="scale(0.86749628,1.1527427)"
+                                        onclick="">&lt;</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="btnOkSvg"
+                                    transform="matrix(0.00439705,0,0,0.00439705,56.070862,34.797063)"
+                                    onclick=""
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-5-0-6"
+                                        ry="0"
+                                        rx="0"
+                                        height="3319.4321"
+                                        width="11196.02"
+                                        y="9457.2988"
+                                        x="5312.8804"
+                                        class="fil8"
+                                        style="fill:#b3b3b3;stroke-width:2.0324223"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-0-7-7"
+                                        class="fil0 fnt2"
+                                        y="11871.146"
+                                        x="8785.7012"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#000000;stroke-width:2.89109302">ok</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-22"
+                                    transform="matrix(0.00634274,0,0,0.00909802,-55.635875,-93.988144)"
+                                    onclick=""
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="Foninsert"
+                                        ry="0"
+                                        rx="0"
+                                        height="2753.3203"
+                                        width="9148.0723"
+                                        y="10850.139"
+                                        x="17692.459"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:1.72330952"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="numberColumn"
+                                        class="fil0 fnt2"
+                                        y="15860.896"
+                                        x="21528.906"
+                                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1807.97619629px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:end;writing-mode:lr-tb;text-anchor:end;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:2.13535166;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                        transform="scale(1.230813,0.8124711)" />
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-5"
+                                    transform="matrix(0.00649068,0,0,0.00649068,0.12093531,-53.72782)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'2';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-0"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="4236.5713"
+                                        y="12866.107"
+                                        x="12229.393"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:1.09374964"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-2"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="13660.075"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">2</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-6"
+                                    transform="matrix(0.00648574,0,0,0.00649068,28.738992,-53.72782)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'3';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-4"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="3345.9143"
+                                        y="12866.109"
+                                        x="12067.757"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.972004"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-5"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="13146.779"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">3</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-2"
+                                    transform="matrix(0.00649068,0,0,0.00649068,-31.28827,-38.183516)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'4';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-9"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="3532.04"
+                                        y="12866.107"
+                                        x="13534.03"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.99867338"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-1"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="14221.635"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">4</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-5-4"
+                                    transform="matrix(0.00649068,0,0,0.00649068,0.11883091,-38.183516)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'5';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-0-1"
+                                        ry="7.4055362"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="4238.5513"
+                                        y="12866.107"
+                                        x="12227.737"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:1.09400523"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-2-2"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="13597.68"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">5</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-6-8"
+                                    transform="matrix(0.00649068,0,0,0.00649068,23.761082,-38.073593)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'6';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-4-4"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="3339.0312"
+                                        y="12849.174"
+                                        x="12825.5"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.97100377"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-5-6"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="13957.921"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">6</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-4"
+                                    transform="matrix(0.00649068,0,0,0.00649068,-31.272389,-22.639189)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'7';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-95"
+                                        ry="0"
+                                        rx="0"
+                                        height="2389.6877"
+                                        width="3532.0391"
+                                        y="12866.104"
+                                        x="13531.586"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.9975931"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-7"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="14159.239"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">7</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-5-7"
+                                    transform="matrix(0.00649068,0,0,0.00649068,0.10777647,-22.639212)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'8';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-0-5"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="4239.0181"
+                                        y="12866.107"
+                                        x="12228.974"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:1.09406531"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-2-0"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="13597.68"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">8</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-6-9"
+                                    transform="matrix(0.00649068,0,0,0.00649068,23.777081,-22.6392)"
+                                    onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'9';"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-4-2"
+                                        ry="0"
+                                        rx="0"
+                                        height="2394.8655"
+                                        width="3337.7947"
+                                        y="12866.107"
+                                        x="12823.035"
+                                        class="fil8"
+                                        style="fill:#241f1c;stroke-width:0.97082394"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-5-0"
+                                        class="fil0 fnt2"
+                                        y="14945.658"
+                                        x="14039.448"
+                                        style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">9</text>
+                            </g>
+                            <g
+                                    style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                    id="to_zero-7-03-0-9"
+                                    transform="matrix(0.00409345,0,0,0.00410788,59.083027,-48.096314)"
+                                    onclick="document.getElementById('Keyboord_key').style.display = 'none'"
+                                    onmousedown=""
+                                    onmouseup="">
+                                <rect
+                                        id="rect4149-1-67-6-4"
+                                        ry="38.397152"
+                                        rx="0"
+                                        height="2710.7156"
+                                        width="3437.7498"
+                                        y="12866.107"
+                                        x="13516.016"
+                                        class="fil8"
+                                        style="fill:#ff0000;stroke-width:1.04821229"
+                                        onclick=""
+                                        onmousedown=""
+                                        onmouseup="" />
+                                <text
+                                        id="text4151-3-93-1-9"
+                                        class="fil0 fnt2"
+                                        y="13202.962"
+                                        x="16764.109"
+                                        style="font-weight:normal;font-size:3480.10668945px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:4.11034632"
+                                        transform="scale(0.86749628,1.1527427)">x</text>
+                            </g>
                         </g>
                         <g
-                                style="display:none"
-                                id="Keyboord_key"
-                                inkscape:label="KEY">
-                            <g
-                                    transform="matrix(8.5043073,0,0,8.5043073,-119.17464,-11.456808)"
-                                    style="display:inline"
-                                    id="Keyboord_key"
-                                    inkscape:label="Keyboord_key1">
-                                <rect
-                                        onmouseup=""
-                                        onmousedown=""
-                                        onclick=""
-                                        style="clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.02717622;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                        class="fil8"
-                                        x="55.728107"
-                                        y="4.3286138"
-                                        width="72.361061"
-                                        height="86.563232"
-                                        rx="0"
-                                        ry="0"
-                                        id="rect4149-1-7" />
-                                <g
-                                        transform="translate(-0.75941074,-0.29850669)"
-                                        id="g5837">
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-50"
-                                            transform="matrix(0.00649068,0,0,0.00649068,-31.272392,-53.72782)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'1';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="3532.04"
-                                                y="12866.107"
-                                                x="13534.03"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.99867338"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="14221.635"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">1</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-03-0"
-                                            transform="matrix(0.005741,0,0,0.00488508,37.292623,-46.78536)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML = document.getElementById(&quot;numberColumn&quot;).innerHTML.slice(0,-1);"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-67-6"
-                                                ry="0"
-                                                rx="0"
-                                                height="2854.3347"
-                                                width="2456.2429"
-                                                y="12818.235"
-                                                x="13466.982"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.90919751"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-93-1"
-                                                class="fil0 fnt2"
-                                                y="13563.133"
-                                                x="15801.454"
-                                                style="font-weight:normal;font-size:3480.10668945px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:4.11034632"
-                                                transform="scale(0.86749628,1.1527427)"
-                                                onclick="">&lt;</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="btnOkSvg"
-                                            transform="matrix(0.00439705,0,0,0.00439705,56.070862,34.797063)"
-                                            onclick=""
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-5-0-6"
-                                                ry="0"
-                                                rx="0"
-                                                height="3319.4321"
-                                                width="11196.02"
-                                                y="9457.2988"
-                                                x="5312.8804"
-                                                class="fil8"
-                                                style="fill:#b3b3b3;stroke-width:2.0324223"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-0-7-7"
-                                                class="fil0 fnt2"
-                                                y="11871.146"
-                                                x="8785.7012"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#000000;stroke-width:2.89109302">ok</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-22"
-                                            transform="matrix(0.00634274,0,0,0.00909802,-55.635875,-93.988144)"
-                                            onclick=""
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="Foninsert"
-                                                ry="0"
-                                                rx="0"
-                                                height="2753.3203"
-                                                width="9148.0723"
-                                                y="10850.139"
-                                                x="17692.459"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:1.72330952"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="numberColumn"
-                                                class="fil0 fnt2"
-                                                y="15860.896"
-                                                x="21528.906"
-                                                style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1807.97619629px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:end;writing-mode:lr-tb;text-anchor:end;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:2.13535166;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                                transform="scale(1.230813,0.8124711)" />
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-5"
-                                            transform="matrix(0.00649068,0,0,0.00649068,0.12093531,-53.72782)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'2';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-0"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="4236.5713"
-                                                y="12866.107"
-                                                x="12229.393"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:1.09374964"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-2"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="13660.075"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">2</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-6"
-                                            transform="matrix(0.00648574,0,0,0.00649068,28.738992,-53.72782)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'3';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-4"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="3345.9143"
-                                                y="12866.109"
-                                                x="12067.757"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.972004"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-5"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="13146.779"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">3</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-2"
-                                            transform="matrix(0.00649068,0,0,0.00649068,-31.28827,-38.183516)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'4';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-9"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="3532.04"
-                                                y="12866.107"
-                                                x="13534.03"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.99867338"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-1"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="14221.635"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">4</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-5-4"
-                                            transform="matrix(0.00649068,0,0,0.00649068,0.11883091,-38.183516)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'5';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-0-1"
-                                                ry="7.4055362"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="4238.5513"
-                                                y="12866.107"
-                                                x="12227.737"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:1.09400523"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-2-2"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="13597.68"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">5</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-6-8"
-                                            transform="matrix(0.00649068,0,0,0.00649068,23.761082,-38.073593)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'6';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-4-4"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="3339.0312"
-                                                y="12849.174"
-                                                x="12825.5"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.97100377"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-5-6"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="13957.921"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">6</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-4"
-                                            transform="matrix(0.00649068,0,0,0.00649068,-31.272389,-22.639189)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'7';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-95"
-                                                ry="0"
-                                                rx="0"
-                                                height="2389.6877"
-                                                width="3532.0391"
-                                                y="12866.104"
-                                                x="13531.586"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.9975931"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-7"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="14159.239"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">7</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-5-7"
-                                            transform="matrix(0.00649068,0,0,0.00649068,0.10777647,-22.639212)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'8';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-0-5"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="4239.0181"
-                                                y="12866.107"
-                                                x="12228.974"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:1.09406531"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-2-0"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="13597.68"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">8</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-6-9"
-                                            transform="matrix(0.00649068,0,0,0.00649068,23.777081,-22.6392)"
-                                            onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'9';"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-4-2"
-                                                ry="0"
-                                                rx="0"
-                                                height="2394.8655"
-                                                width="3337.7947"
-                                                y="12866.107"
-                                                x="12823.035"
-                                                class="fil8"
-                                                style="fill:#241f1c;stroke-width:0.97082394"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-5-0"
-                                                class="fil0 fnt2"
-                                                y="14945.658"
-                                                x="14039.448"
-                                                style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">9</text>
-                                    </g>
-                                    <g
-                                            style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                            id="to_zero-7-03-0-9"
-                                            transform="matrix(0.00409345,0,0,0.00410788,59.083027,-48.096314)"
-                                            onclick="document.getElementById('Keyboord_key').style.display = 'none'"
-                                            onmousedown=""
-                                            onmouseup="">
-                                        <rect
-                                                id="rect4149-1-67-6-4"
-                                                ry="38.397152"
-                                                rx="0"
-                                                height="2710.7156"
-                                                width="3437.7498"
-                                                y="12866.107"
-                                                x="13516.016"
-                                                class="fil8"
-                                                style="fill:#ff0000;stroke-width:1.04821229"
-                                                onclick=""
-                                                onmousedown=""
-                                                onmouseup="" />
-                                        <text
-                                                id="text4151-3-93-1-9"
-                                                class="fil0 fnt2"
-                                                y="13202.962"
-                                                x="16764.109"
-                                                style="font-weight:normal;font-size:3480.10668945px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:4.11034632"
-                                                transform="scale(0.86749628,1.1527427)">x</text>
-                                    </g>
-                                </g>
-                                <g
-                                        style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
-                                        id="to_zero-7-6-9-3"
-                                        transform="matrix(0.00649068,0,0,0.00649068,-32.0318,-7.3933918)"
-                                        onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'0';"
-                                        onmousedown=""
-                                        onmouseup="">
-                                    <rect
-                                            id="rect4149-1-4-2-3"
-                                            ry="0"
-                                            rx="0"
-                                            height="2257.9504"
-                                            width="3525.4521"
-                                            y="12866.107"
-                                            x="13530.427"
-                                            class="fil8"
-                                            style="fill:#241f1c;stroke-width:0.96880138"
-                                            onclick=""
-                                            onmousedown=""
-                                            onmouseup="" />
-                                    <text
-                                            id="text4151-3-5-0-7"
-                                            class="fil0 fnt2"
-                                            y="14945.658"
-                                            x="14284.03"
-                                            style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">0</text>
-                                </g>
-                            </g>
+                                style="clip-rule:evenodd;display:inline;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:new"
+                                id="to_zero-7-6-9-3"
+                                transform="matrix(0.00649068,0,0,0.00649068,-32.0318,-7.3933918)"
+                                onclick="document.getElementById(&quot;numberColumn&quot;).innerHTML=document.getElementById(&quot;numberColumn&quot;).innerHTML+'0';"
+                                onmousedown=""
+                                onmouseup="">
+                            <rect
+                                    id="rect4149-1-4-2-3"
+                                    ry="0"
+                                    rx="0"
+                                    height="2257.9504"
+                                    width="3525.4521"
+                                    y="12866.107"
+                                    x="13530.427"
+                                    class="fil8"
+                                    style="fill:#241f1c;stroke-width:0.96880138"
+                                    onclick=""
+                                    onmousedown=""
+                                    onmouseup="" />
                             <text
+                                    id="text4151-3-5-0-7"
+                                    class="fil0 fnt2"
+                                    y="14945.658"
+                                    x="14284.03"
+                                    style="font-weight:normal;font-size:2447.80151367px;line-height:0%;font-family:Arial;fill:#e3e2db;stroke-width:2.89109302">0</text>
+                        </g>
+                    </g>
+                    <text
              xml:space="preserve"
              style="font-style:normal;font-weight:normal;font-size:51.57933807px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.28948331"
              x="402.07281"
@@ -973,33 +1044,32 @@
                y="68.751694"
                style="fill:#e6e6e6;stroke-width:1.28948331"
                id="tspan138"><tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.57996368px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
-   id="tspan150"> Введите №колонны</tspan> </tspan></text>
-                            <path
-                                    style="fill:none;stroke:#000000;stroke-width:1.0748961px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                                    d="M 354.71472,89.381051 H 847.31266"
-                                    id="path152"
-                                    inkscape:connector-curvature="0" />
-                        </g>
-                    </g>
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.57996368px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+                 id="tspan150"> Введите №колонны</tspan></tspan></text>
+                    <path
+                            style="fill:none;stroke:#000000;stroke-width:1.0748961px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                            d="M 354.71472,89.381051 H 847.31266"
+                            id="path152"
+                            inkscape:connector-curvature="0" />
                 </g>
             </g>
-        </svg>
+        </g>
+    </g>
+</svg>
 
 
 
 
 
+<!-- Здесь код SVG конец -->
 
-        <!-- Здесь код SVG конец -->
+<script src="js/third_party/jquery/jquery/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="js/third_party/jquery/jquery/jqueryrotate.2.1.js" type="text/javascript"></script>
+<script src="js/page/settingsSVG.js" type="text/javascript"></script>
+<script src="js/page/messagePage.js" type="text/javascript"></script>
+<script src="js/page/menuPage.js" type="text/javascript"></script>
 
-        <script src="js/third_party/jquery/jquery/jquery-1.12.4.js" type="text/javascript"></script>
-        <script src="js/third_party/jquery/jquery/jqueryrotate.2.1.js" type="text/javascript"></script>
-        <script src="js/page/settingsSVG.js" type="text/javascript"></script>
-        <script src="js/page/messagePage.js" type="text/javascript"></script>
-        <script src="js/page/menuPage.js" type="text/javascript"></script>
-  
-        <script src="js/dist/bundle.js" type="text/javascript"></script>
-    </body>
+<script src="js/dist/bundle.js" type="text/javascript"></script>
+</body>
 
 </html>
